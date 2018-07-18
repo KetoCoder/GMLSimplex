@@ -1,0 +1,188 @@
+// Convert integer data into greyscale color
+
+var xx = argument0;
+var yy = argument1;
+var heightgrid = argument2;
+var moistgrid = argument3;
+var thermalgrid = argument4;
+
+var static = random_range(-4, 4);
+
+var height = (ds_grid_get(heightgrid, xx, yy) + 1) * 127.5;
+var moist = (ds_grid_get(moistgrid, xx, yy) + 1) * 127.5;
+var thermal = (ds_grid_get(thermalgrid, xx, yy) + 1) * 127.5;
+
+var r = 0;
+var g = 0;
+var b = 0;
+
+if height < 95
+{
+    r = 66;
+    g = 134;
+    b = 244;
+}
+
+else if height < 100
+{
+    r = 242;
+    g = 228;
+    b = 184;
+}
+
+else if height < 150
+{
+    r = 81;
+    g = 150;
+    b = 85;
+    
+    if thermal > 150
+    {
+        r = 156;
+        g = 165;
+        b = 114;
+    }
+    
+    else if thermal > 120
+    {
+        // Take the amount over the threshold and multiply by the difference in value over the difference in threshold
+        r += (thermal - 120) * (75 / 30);
+        g += (thermal - 120) * 0.5;
+        b += (thermal - 120) * (29 / 30);
+        
+        if moist < 80
+        {
+            r = 155;
+            g = 154;
+            b = 113;
+        }// Convert integer data into greyscale color
+
+var xx = argument0;
+var yy = argument1;
+var heightgrid = argument2;
+var moistgrid = argument3;
+var thermalgrid = argument4;
+
+var static = random_range(-4, 4);
+
+var height = (ds_grid_get(heightgrid, xx, yy) + 1) * 127.5;
+var moist = (ds_grid_get(moistgrid, xx, yy) + 1) * 127.5;
+var thermal = (ds_grid_get(thermalgrid, xx, yy) + 1) * 127.5;
+
+var r = 0;
+var g = 0;
+var b = 0;
+
+if height < 95
+{
+    r = 66;
+    g = 134;
+    b = 244;
+}
+
+else if height < 100
+{
+    r = 242;
+    g = 228;
+    b = 184;
+}
+
+else if height < 150
+{
+    r = 81;
+    g = 150;
+    b = 85;
+    
+    if thermal > 150
+    {
+        r = 156;
+        g = 165;
+        b = 114;
+    }
+    
+    else if thermal > 120
+    {
+        // Take the amount over the threshold and multiply by the difference in value over the difference in threshold
+        r += (thermal - 120) * (75 / 30);
+        g += (thermal - 120) * 0.5;
+        b += (thermal - 120) * (29 / 30);
+        
+        if moist < 80
+        {
+            r = 155;
+            g = 154;
+            b = 113;
+        }
+    }
+    
+    else
+    {
+        if moist > 135
+        {
+            r = 53;
+            g = 145;
+            b = 72;
+        }
+    }
+    
+    if height < 150
+    {
+        r += (height - 140);
+        g += (height - 140);
+        b += (height - 140);
+    }
+}
+
+else
+{
+    r = 100;
+    g = 100;
+    b = 100;
+    
+    if height > 172 and thermal < 120 or height > 165 and thermal < 80
+    {
+        r = 240;
+        b = 250;
+        g = 240;
+    }
+}
+
+var ret = make_color_rgb(r, g, b);
+return ret;
+
+    }
+    
+    else
+    {
+        if moist > 135
+        {
+            r = 53;
+            g = 145;
+            b = 72;
+        }
+    }
+    
+    if height < 150
+    {
+        r += (height - 140);
+        g += (height - 140);
+        b += (height - 140);
+    }
+}
+
+else
+{
+    r = 100;
+    g = 100;
+    b = 100;
+    
+    if height > 172 and thermal < 120 or height > 165 and thermal < 80
+    {
+        r = 240;
+        b = 250;
+        g = 240;
+    }
+}
+
+var ret = make_color_rgb(r, g, b);
+return ret;
